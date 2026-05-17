@@ -6,6 +6,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.0.3] - 2026-05-17
+
+### Fixed
+- Removed unused imports: `expected_conditions`, `urlparse`, `MAX_PAGE_SIZE_MB` from scraper.py
+- Fixed fragile User-Agent extraction — now uses `USER_AGENT` constant directly from config
+- Fixed `html` module import order in notebook — imported at top of Cell 2, not inside conditional block
+- Fixed `_build_driver` timeout — now accepts `timeout` parameter instead of using only default
+- Removed unused constants `DEFAULT_HTML_FILE` and `DEFAULT_JSON_FILE` from config.py
+
+### Changed
+- Notebook now imports all UI functions from `src/ui.py` — zero code duplication across cells
+- Added `show_meta_tags()` to `src/ui.py` — meta tag display is now a shared function
+- Added `__all__` exports to `src/scraper.py`, `src/ui.py`, and `src/__init__.py`
+- Added `webdriver-manager` to `requirements.txt` for portable driver setup
+- Removed `*.html` from `.gitignore` — only `*.zip` blocked now
+- All 3 notebook cells now import from `src/` package via repo clone
+- Notebook clones repo at startup for `src/` package availability
+
+## [1.0.2] - 2026-05-17
+
+### Changed
+- README footer: added AniPay banner, Telegram/Instagram/Gmail badges, copyright notice
+- CONTRIBUTING.md: added commit message conventions, code style guidelines, testing section
+- SECURITY.md: added supported versions table, response timeline, scope details
+
+## [1.0.1] - 2026-05-17
+
+### Fixed
+- Auto-detect Chromium and ChromeDriver paths for Colab — scans multiple known paths
+- Falls back to `shutil.which()` and `find` command for driver discovery
+- Saves detected paths to `/tmp` for Step 2 re-use
+- Quick Selenium verification test in Step 1
+
 ## [1.0.0] - 2026-05-17
 
 ### Added

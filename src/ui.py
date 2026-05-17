@@ -9,6 +9,21 @@ from .config import (
     FONT, MONO, C_OK, C_WARN, C_ERR, C_INFO, C_STEP,
 )
 
+__all__ = [
+    "show_header",
+    "show_ok",
+    "show_warn",
+    "show_err",
+    "show_info",
+    "show_step",
+    "show_stats",
+    "show_html_preview",
+    "show_links_table",
+    "show_meta_tags",
+]
+
+
+# ── Internal helpers ──
 
 def _card(inner: str) -> str:
     return (
@@ -51,9 +66,14 @@ def _stat_card(icon: str, label: str, value: str, color: str = "#667eea") -> str
     )
 
 
+def _escape(text: str) -> str:
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
 # ── Public API ──
 
 def show_header(icon: str, title: str, sub: str = ""):
+    """Show a styled section header card."""
     display(HTML(_card(_header(icon, title, sub))))
 
 
@@ -92,13 +112,14 @@ def show_html_preview(html: str, max_chars: int = 5000):
     if truncated:
         preview += f"\n\n<!-- ... truncated ({len(html):,} total chars) ... -->"
 
+    escaped = _escape(preview)
     display(HTML(
         f'<div style="margin:14px 0">'
         f'<div style="{FONT};font-size:13px;font-weight:600;color:{TEXT};margin-bottom:8px">'
         f'📄 HTML Preview {"(truncated)" if truncated else "(full)"}</div>'
         f'<pre style="background:#1e1e2e;color:#d4d4d4;padding:16px;border-radius:12px;'
         f'overflow-x:auto;font-size:12px;max-height:400px;overflow-y:auto">'
-        f'<code>{_escape(preview)}</code></pre></div>'
+        f'<code>{escaped}</code></pre></div>'
     ))
 
 
@@ -120,9 +141,13 @@ def show_links_table(links: list[dict], max_rows: int = 30):
             f'<td style="padding:6px 10px;font-size:11px;{MONO};color:#2563eb;'
             f'max-width:350px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'
             f'<a href="{url}" target="_blank">{url}</a></td></tr>'
-    )
+        )
 
-    extra = f"<div style='{FONT};font-size:11px;color:{TEXT_MUTED};margin-top:6px'>... and {len(links) - max_rows} more links</div>" if len(links) > max_rows else ""
+    extra = (
+        f"<div style='{FONT};font-size:11px;color:{TEXT_MUTED};margin-top:6px'>"
+        f"... and {len(links) - max_rows} more links</div>"
+        if len(links) > max_rows else ""
+    )
 
     display(HTML(
         f'<div style="margin:14px 0">'
@@ -138,5 +163,40 @@ def show_links_table(links: list[dict], max_rows: int = 30):
     ))
 
 
-def _escape(text: str) -> str:
-    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+def show_meta_tags(meta_tags: dict, important_keys: list[str] | None = None):
+    """Show key meta tags in a table."""
+    if not meta_tags:
+        return
+
+    if important_keys is None:
+        important_keys = [
+            "og:title", "og:description", "og:image", "og:url", "og:type",
+            "twitter:card", "twitter:title", "twitter:description",
+            "description", "keywords", "author", "viewport", "robots",
+        ]
+
+    shown = {k: v for k, v in meta_tags.items() if k in important_keys}
+    if not shown:
+        return
+
+    rows = ""
+    for k, v in shown.items():
+        rows += (
+            f'<tr style="border-bottom:1px solid {BORDER}">'
+            f'<td style="padding:6px 10px;font-size:12px;{MONO};color:#7c3aed;font-weight:600">'
+            f'{_escape(k)}</td>'
+            f'<td style="padding:6px 10px;font-size:12px;color:{TEXT};max-width:400px;'
+            f'overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'
+            f'{_escape(v[:200])}</td></tr>'
+        )
+
+    display(HTML(
+        f'<div style="margin:14px 0">'
+        f'<div style="{FONT};font-size:13px;font-weight:600;color:{TEXT};margin-bottom:8px">'
+        f'🏷️ Key Meta Tags</div>'
+        f'<table style="width:100%;border-collapse:collapse;border:1px solid {BORDER};border-radius:8px">'
+        f'<thead><tr style="background:{BG_CARD}">'
+        f'<th style="padding:8px 10px;text-align:left;font-size:11px;color:{TEXT_MUTED}">Tag</th>'
+        f'<th style="padding:8px 10px;text-align:left;font-size:11px;color:{TEXT_MUTED}">Value</th>'
+        f'</tr></thead><tbody>{rows}</tbody></table></div>'
+    ))

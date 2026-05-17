@@ -8,7 +8,6 @@ __pycache__/
 
 # Output files
 /webscrap_output/
-*.html
 *.zip
 
 # Virtual environments

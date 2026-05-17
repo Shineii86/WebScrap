@@ -100,4 +100,6 @@ For each scrape, you get:
 ## Need Help?
 
 - Check the [FAQ](README.md#-faq) in the README
+- Read the [Changelog](CHANGELOG.md) for known issues and fixes
+- Review [SECURITY.md](SECURITY.md) for responsible usage
 - Open an [issue](https://github.com/Shineii86/WebScrap/issues)

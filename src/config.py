@@ -5,7 +5,6 @@ WebScrap — Configuration and constants.
 # ── Defaults ──
 DEFAULT_TIMEOUT = 30          # seconds to wait for page load
 DEFAULT_WAIT_AFTER_LOAD = 3   # extra seconds for JS to settle
-MAX_PAGE_SIZE_MB = 50         # skip pages larger than this
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -27,8 +26,6 @@ CHROME_OPTIONS = [
 
 # ── Output ──
 DEFAULT_OUTPUT_DIR = "/content/webscrap_output"
-DEFAULT_HTML_FILE = "scraped.html"
-DEFAULT_JSON_FILE = "scraped_meta.json"
 
 # ── UI Theme (matches ZImageUpscaler style) ──
 BG_CARD = "#f4f5f7"
