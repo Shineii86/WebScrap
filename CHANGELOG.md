@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.0.4] - 2026-05-17
+
+### Changed
+- Rewrote GUIDE.md to match ZImagePro style — beginner-friendly, step-by-step format
+- Added "What Is This?" section with plain English explanations (Notebook, Colab, Selenium)
+- Added "What You Need" requirements table with "you do NOT need" callout
+- Added "Getting Started" with direct Colab link
+- Added detailed Step 1/2/3 walkthroughs with "What You'll See" output examples
+- Added "All Settings Explained" with detailed parameter tables
+- Added "Site Type Guide" with per-site-type settings recommendations
+- Added "Common Custom JS Examples" table
+- Added "Where Are My Files?" with Colab file browser paths
+- Added FAQ with <details> blocks
+- Added "Common Problems & Fixes" with cause + fix for each error
+- Added footer with GitHub and Telegram badges
+
 ## [1.0.3] - 2026-05-17
 
 ### Fixed
