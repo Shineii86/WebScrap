@@ -434,15 +434,22 @@ Free to use, modify, and distribute — see the [LICENSE](LICENSE) file for deta
 ---
 
 ## 💕 Loved My Work?
-
 🚨 [Follow me on GitHub](https://github.com/Shineii86)
 
-⭐ [Give a star to this repo](https://github.com/Shineii86/WebScrap/stargazers)
-
----
+⭐ [Give a star to this project](https://github.com/Shineii86/WebScrap)
 
 <div align="center">
+  
+<a href="https://github.com/Shineii86/WebScrap">
+<img src="https://github.com/Shineii86/AniPay/blob/main/Source/Banner6.png" alt="Banner">
+</a>
 
-**Built with 🕷️ by [Shineii86](https://github.com/Shineii86)**
+<i>~ For inquiries or collaborations</i>
+     
+[![Telegram Badge](https://img.shields.io/badge/-Telegram-2CA5E0?style=for-the-badge&logo=Telegram&logoColor=white)](https://telegram.me/Shineii86 "Contact on Telegram")
+[![Instagram Badge](https://img.shields.io/badge/-Instagram-C13584?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/ikx7.a "Follow on Instagram")
+[![Gmail Badge](https://img.shields.io/badge/-Gmail-D14836?style=for-the-badge&logo=Gmail&logoColor=white)](mailto:ikx7a@hotmail.com "Send an Email")
+
+<sup><b>Copyright © <a href="https://telegram.me/Shineii86">Shinei Nouzen</a> All Rights Reserved</b></sup>
 
 </div>
