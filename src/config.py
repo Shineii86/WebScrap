@@ -14,12 +14,10 @@ USER_AGENT = (
 # ── Chromium / Selenium ──
 CHROMIUM_VERSION = "131.0.6778.204"
 CHROME_OPTIONS = [
-    "--headless=new",
+    "--headless",
     "--no-sandbox",
     "--disable-dev-shm-usage",
     "--disable-gpu",
-    "--disable-extensions",
-    "--disable-infobars",
     "--single-process",
     "--no-zygote",
     "--window-size=1920,1080",
