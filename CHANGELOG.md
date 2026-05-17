@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.0.5] - 2026-05-17
+
+### Fixed
+- Auto-scroll now detects new DOM elements (img, a, video) instead of just scrollHeight change
+- Stops after 3 consecutive scrolls with no new elements (was breaking on infinite-scroll sites)
+- Increased pause between scrolls to 1.5s for lazy content to load
+
+### Changed
+- Timeout max increased to 300s (was 120s)
+- Wait after load max increased to 60s (was 30s)
+- Notebook now uses repo src/ modules directly (zero code duplication)
+- Cell 2 calls scrape_url() from src/scraper.py with progress callback
+- Repo auto-pulls latest on re-run (git pull)
+- Upgraded notebook header with capsule-render banner, gradient cards, hover effects, dark mode
+- src/scraper.py: added callback parameter for progress events
+- src/scraper.py: exported _build_driver() for notebook Selenium test
+
 ## [1.0.4] - 2026-05-17
 
 ### Changed
