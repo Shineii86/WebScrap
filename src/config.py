@@ -20,6 +20,8 @@ CHROME_OPTIONS = [
     "--disable-gpu",
     "--disable-extensions",
     "--disable-infobars",
+    "--single-process",
+    "--no-zygote",
     "--window-size=1920,1080",
     f"--user-agent={USER_AGENT}",
 ]
