@@ -148,19 +148,24 @@ def scrape_url(
             driver.quit()
 
 
-def _auto_scroll(driver, max_scrolls: int = 50, pause: float = 0.8) -> int:
+def _auto_scroll(driver, max_scrolls: int = 100, pause: float = 1.5) -> int:
     """Scroll to bottom to trigger lazy-loading. Returns scroll count."""
     count = 0
-    last_height = driver.execute_script("return document.body.scrollHeight")
+    no_new_content_streak = 0
 
     for _ in range(max_scrolls):
+        prev_count = len(driver.find_elements("css selector", "img, a[href], video"))
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(pause)
-        new_height = driver.execute_script("return document.body.scrollHeight")
         count += 1
-        if new_height == last_height:
-            break
-        last_height = new_height
+
+        new_count = len(driver.find_elements("css selector", "img, a[href], video"))
+        if new_count == prev_count:
+            no_new_content_streak += 1
+            if no_new_content_streak >= 3:
+                break
+        else:
+            no_new_content_streak = 0
 
     # Scroll back to top
     driver.execute_script("window.scrollTo(0, 0);")
